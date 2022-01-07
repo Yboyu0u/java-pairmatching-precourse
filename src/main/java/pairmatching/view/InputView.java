@@ -6,7 +6,6 @@ public class InputView {
 
 	public static void selectFunction() {
 		System.out.println(Message.SELECT_FUNCTION);
-		System.out.println();
 	}
 
 	public static void selectMatchingInformation() {

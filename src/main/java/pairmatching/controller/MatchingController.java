@@ -3,6 +3,7 @@ package pairmatching.controller;
 import camp.nextstep.edu.missionutils.Console;
 import pairmatching.exception.dto.ResponseError;
 import pairmatching.service.MatchingService;
+import pairmatching.view.InputView;
 
 public class MatchingController {
 	private MatchingService matchingService;
@@ -12,15 +13,20 @@ public class MatchingController {
 	}
 
 	public boolean selectFunction() {
+		boolean check = false;
+
 		try {
+			InputView.selectFunction();
+
 			if(matchingService.selectFunction(Console.readLine())) {
+				check = true;
 				selectMatchingInformation();
 			}
 		} catch (IllegalArgumentException e) {
 			ResponseError.of(e.getMessage());
 		}
 
-		return true;
+		return check;
 	}
 
 	public void selectMatchingInformation() {

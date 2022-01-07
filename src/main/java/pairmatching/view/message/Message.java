@@ -6,7 +6,7 @@ public class Message {
 		+ "1. 페어 매칭\n"
 		+ "2. 페어 조회\n"
 		+ "3. 페어 초기화\n"
-		+ "Q. 종료\n";
+		+ "Q. 종료";
 
 	public static final String PRINT_MATCHING_INFORMATION = "#############################################\n"
 		+ "과정: 백엔드 | 프론트엔드\n"
