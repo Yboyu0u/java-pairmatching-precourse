@@ -17,7 +17,6 @@ public class MatchingController {
 
 		try {
 			InputView.selectFunction();
-
 			if(matchingService.selectFunction(Console.readLine())) {
 				check = true;
 				selectMatchingInformation();
@@ -31,6 +30,7 @@ public class MatchingController {
 
 	public void selectMatchingInformation() {
 		try {
+			InputView.selectMatchingInformation();
 			matchingService.selectMatchingInformation(Console.readLine());
 		} catch (IllegalArgumentException e) {
 			ResponseError.of(e.getMessage());
