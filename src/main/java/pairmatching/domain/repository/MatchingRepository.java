@@ -10,16 +10,24 @@ public class MatchingRepository {
 		this.matchingList = new ArrayList<>();
 	}
 
-	public void save(Matching matching) {
+	public boolean save(Matching matching) {
 		matchingList.add(matching);
+
+		return true;
 	}
 
-	public void read(Matching matching) {
-
+	public Matching read(Matching beFindMatching) {
+		return matchingList.stream()
+			.filter(matching -> matching.equals(beFindMatching))
+			.findFirst().get();
 	}
 
 	public void delete(Matching matching) {
 
+	}
+
+	public boolean checkInList() {
+		return true;
 	}
 
 }
