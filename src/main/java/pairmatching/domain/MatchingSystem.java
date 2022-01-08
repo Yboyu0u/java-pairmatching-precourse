@@ -1,7 +1,5 @@
 package pairmatching.domain;
 
-import java.util.Arrays;
-
 import pairmatching.view.OutputView;
 
 public class MatchingSystem {
@@ -44,7 +42,7 @@ public class MatchingSystem {
 		}
 
 		if (functionNumber.equals(OPTION_THREE)) {
-			function.initialize(information);
+			function.initialize();
 		}
 	}
 }

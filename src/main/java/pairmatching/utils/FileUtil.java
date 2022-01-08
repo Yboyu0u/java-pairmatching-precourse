@@ -12,7 +12,8 @@ public class FileUtil {
 	public static List<String> read(String fileName){
 		List<String> crewNames = new ArrayList<>();
 		try {
-			BufferedReader bufferedReader = new BufferedReader(new FileReader(BASE_PATH+fileName));
+			BufferedReader bufferedReader = new BufferedReader(
+				new FileReader(BASE_PATH+makeFileName(fileName)));
 
 			while(true) {
 				String line = bufferedReader.readLine();
@@ -25,5 +26,13 @@ public class FileUtil {
 			e.printStackTrace();
 		}
 		return crewNames;
+	}
+
+	private static String makeFileName(String course) {
+		if(course.equals("백엔드")) {
+			return "backend-crew.md";
+		}
+
+		return "frontend-crew.md";
 	}
 }

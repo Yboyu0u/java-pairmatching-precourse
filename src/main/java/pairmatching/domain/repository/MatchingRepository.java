@@ -22,8 +22,8 @@ public class MatchingRepository {
 			.findFirst().get();
 	}
 
-	public void delete(Matching matching) {
-
+	public void deleteAll() {
+		matchingList.clear();
 	}
 
 	public boolean checkInList() {
