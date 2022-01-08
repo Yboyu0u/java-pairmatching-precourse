@@ -1,6 +1,7 @@
 package pairmatching.controller;
 
 import camp.nextstep.edu.missionutils.Console;
+import pairmatching.constant.Constant;
 import pairmatching.exception.dto.ResponseError;
 import pairmatching.service.MatchingService;
 import pairmatching.view.InputView;
@@ -26,22 +27,22 @@ public class MatchingController {
 	}
 
 	private boolean checkFunctionNumber(String functionNumber) {
-		if(functionNumber.equals("1") || functionNumber.equals("2")) {
-			selectMatchingInformation();
+		if(functionNumber.equals(Constant.OPTION_ONE) || functionNumber.equals(Constant.OPTION_TWO)) {
+			selectMatchingInformation(functionNumber);
 			return true;
 		}
 
-		if(functionNumber.equals("3")) {
+		if(functionNumber.equals(Constant.OPTION_THREE)) {
 			return true;
 		}
 
 		return false;
 	}
 
-	public void selectMatchingInformation() {
+	public void selectMatchingInformation(String functionNumber) {
 		try {
 			InputView.selectMatchingInformation();
-			matchingService.selectMatchingInformation(Console.readLine());
+			matchingService.selectMatchingInformation(functionNumber, Console.readLine());
 		} catch (IllegalArgumentException e) {
 			ResponseError.of(e.getMessage());
 		}

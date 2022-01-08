@@ -15,12 +15,12 @@ public class MatchingService {
 
 	public String selectFunction(String input) {
 		// TODO: validation 처리
-		return matchingSystem.saveFunctionNumber(input);
+		return matchingSystem.handleFunctionNumber(input);
 	}
 
-	public void selectMatchingInformation(String input) {
+	public void selectMatchingInformation(String functionNumber, String input) {
 		String[] information = input.replaceAll(BLANK, NULL).split(INFORMATION_DIVISOR);
 		// TODO: validation 처리
-		matchingSystem.handleFunction(information);
+		matchingSystem.handleFunction(functionNumber, information);
 	}
 }

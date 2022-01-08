@@ -16,7 +16,6 @@ public enum Level {
 	}
 
 	public static Level nameToLevel(String levelName) {
-		System.out.println(levelName);
 		return Arrays.stream(Level.values())
 			.filter(level -> level.name.equals(levelName))
 			.findFirst().get();

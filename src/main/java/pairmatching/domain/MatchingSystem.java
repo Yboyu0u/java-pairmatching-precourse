@@ -1,30 +1,27 @@
 package pairmatching.domain;
 
+import pairmatching.constant.Constant;
 import pairmatching.view.OutputView;
 
 public class MatchingSystem {
-	private static final String OPTION_ONE = "1";
-	private static final String OPTION_TWO = "2";
-	private static final String OPTION_THREE = "3";
 
 	private Function function;
-	private String functionNumber;
 
 	public MatchingSystem() {
 		this.function = new Function();
 	}
 
-	public String saveFunctionNumber(String input) {
-		if(input.equals(OPTION_ONE) || input.equals(OPTION_TWO) || input.equals(OPTION_THREE)) {
-			checkNumberIsThree(input);
+	public String handleFunctionNumber(String functionNumber) {
+		if (functionNumber.equals(Constant.OPTION_ONE) || functionNumber.equals(Constant.OPTION_TWO)
+			|| functionNumber.equals(Constant.OPTION_THREE)) {
+			checkNumberIsThree(functionNumber);
 		}
 
-		return input;
+		return functionNumber;
 	}
 
 	private void checkNumberIsThree(String input) {
-		if(!input.equals(OPTION_THREE)) {
-			functionNumber = input;
+		if(!input.equals(Constant.OPTION_THREE)) {
 			OutputView.printMatchingInformation();
 			return;
 		}
@@ -32,14 +29,14 @@ public class MatchingSystem {
 		function.initialize();
 	}
 
-	public void handleFunction(String[] information) {
+	public void handleFunction(String functionNumber, String[] information) {
 		//TODO: 정보를 과정, 미션, 레벨로 쪼개기
 
-		if (functionNumber.equals(OPTION_ONE)) {
+		if (functionNumber.equals(Constant.OPTION_ONE)) {
 			function.matching(information);
 		}
 
-		if (functionNumber.equals(OPTION_TWO)) {
+		if (functionNumber.equals(Constant.OPTION_TWO)) {
 			function.check(information);
 		}
 	}
