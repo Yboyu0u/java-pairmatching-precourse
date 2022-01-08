@@ -13,7 +13,7 @@ public class MatchingService {
 		this.matchingSystem = new MatchingSystem();
 	}
 
-	public boolean selectFunction(String input) {
+	public String selectFunction(String input) {
 		// TODO: validation 처리
 		return matchingSystem.saveFunctionNumber(input);
 	}

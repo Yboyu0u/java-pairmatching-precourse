@@ -14,20 +14,22 @@ public class MatchingSystem {
 		this.function = new Function();
 	}
 
-	public boolean saveFunctionNumber(String input) {
+	public String saveFunctionNumber(String input) {
 		if(input.equals(OPTION_ONE) || input.equals(OPTION_TWO) || input.equals(OPTION_THREE)) {
-			functionNumber = input;
 			checkNumberIsThree(input);
-			return true;
 		}
 
-		return false;
+		return input;
 	}
 
 	private void checkNumberIsThree(String input) {
 		if(!input.equals(OPTION_THREE)) {
+			functionNumber = input;
 			OutputView.printMatchingInformation();
+			return;
 		}
+
+		function.initialize();
 	}
 
 	public void handleFunction(String[] information) {
@@ -39,10 +41,6 @@ public class MatchingSystem {
 
 		if (functionNumber.equals(OPTION_TWO)) {
 			function.check(information);
-		}
-
-		if (functionNumber.equals(OPTION_THREE)) {
-			function.initialize();
 		}
 	}
 }

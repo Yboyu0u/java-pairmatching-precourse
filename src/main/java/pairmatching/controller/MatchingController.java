@@ -17,15 +17,25 @@ public class MatchingController {
 
 		try {
 			InputView.selectFunction();
-			if(matchingService.selectFunction(Console.readLine())) {
-				check = true;
-				selectMatchingInformation();
-			}
+			check = checkFunctionNumber(matchingService.selectFunction(Console.readLine()));
 		} catch (IllegalArgumentException e) {
 			ResponseError.of(e.getMessage());
 		}
 
 		return check;
+	}
+
+	private boolean checkFunctionNumber(String functionNumber) {
+		if(functionNumber.equals("1") || functionNumber.equals("2")) {
+			selectMatchingInformation();
+			return true;
+		}
+
+		if(functionNumber.equals("3")) {
+			return true;
+		}
+
+		return false;
 	}
 
 	public void selectMatchingInformation() {
