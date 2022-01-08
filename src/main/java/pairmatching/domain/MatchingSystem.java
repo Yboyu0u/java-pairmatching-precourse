@@ -1,8 +1,14 @@
 package pairmatching.domain;
 
+import java.util.Arrays;
+
 import pairmatching.view.OutputView;
 
 public class MatchingSystem {
+	private static final String OPTION_ONE = "1";
+	private static final String OPTION_TWO = "2";
+	private static final String OPTION_THREE = "3";
+
 	private Function function;
 	private String functionNumber;
 
@@ -11,7 +17,7 @@ public class MatchingSystem {
 	}
 
 	public boolean saveFunctionNumber(String input) {
-		if(input.equals("1") || input.equals("2") || input.equals("3")) {
+		if(input.equals(OPTION_ONE) || input.equals(OPTION_TWO) || input.equals(OPTION_THREE)) {
 			functionNumber = input;
 			checkNumberIsThree(input);
 			return true;
@@ -21,21 +27,23 @@ public class MatchingSystem {
 	}
 
 	private void checkNumberIsThree(String input) {
-		if(!input.equals("3")) {
+		if(!input.equals(OPTION_THREE)) {
 			OutputView.printMatchingInformation();
 		}
 	}
 
-	public void handleFunction(String information) {
-		if(functionNumber.equals("1")) {
+	public void handleFunction(String[] information) {
+		//TODO: 정보를 과정, 미션, 레벨로 쪼개기
+
+		if (functionNumber.equals(OPTION_ONE)) {
 			function.matching(information);
 		}
 
-		if(functionNumber.equals("2")) {
+		if (functionNumber.equals(OPTION_TWO)) {
 			function.check(information);
 		}
 
-		if(functionNumber.equals("3")) {
+		if (functionNumber.equals(OPTION_THREE)) {
 			function.initialize(information);
 		}
 	}
