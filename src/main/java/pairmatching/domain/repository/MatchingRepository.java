@@ -16,10 +16,10 @@ public class MatchingRepository {
 		return true;
 	}
 
-	public Matching read(Matching beFindMatching) {
+	public List<String> read(Matching beFindMatching) {
 		return matchingList.stream()
 			.filter(matching -> matching.equals(beFindMatching))
-			.findFirst().get();
+			.findFirst().get().getCrewNames();
 	}
 
 	public void deleteAll() {
@@ -27,6 +27,8 @@ public class MatchingRepository {
 	}
 
 	public boolean checkInList() {
+
+
 		return true;
 	}
 

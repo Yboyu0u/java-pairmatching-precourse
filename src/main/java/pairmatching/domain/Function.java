@@ -39,7 +39,7 @@ public class Function {
 		OutputView.printMatchingResult(matchingRepository.read(new Matching(Course.nameToCourse(information[COURSE_INDEX]),
 			Level.nameToLevel(information[LEVEL_INDEX]),
 			Mission.nameToMission(information[MISSION_INDEX]),
-			null)).getCrewNames());
+			null)));
 	}
 
 	public void initialize() {
