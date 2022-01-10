@@ -40,9 +40,13 @@ public class MatchingController {
 	}
 
 	public void selectMatchingInformation(String functionNumber) {
+		boolean check = true;
+
 		try {
-			InputView.selectMatchingInformation();
-			matchingService.selectMatchingInformation(functionNumber, Console.readLine());
+			while (check) {
+				InputView.selectMatchingInformation();
+				check = matchingService.selectMatchingInformation(functionNumber, Console.readLine());
+			}
 		} catch (IllegalArgumentException e) {
 			ResponseError.of(e.getMessage());
 		}

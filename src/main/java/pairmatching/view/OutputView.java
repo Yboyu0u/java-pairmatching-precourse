@@ -37,4 +37,8 @@ public class OutputView {
 		System.out.println(Message.PRINT_INITIALIZED);
 		System.out.println();
 	}
+
+	public static void printLineAlignment() {
+		System.out.println();
+	}
 }

@@ -5,7 +5,7 @@ import pairmatching.view.OutputView;
 
 public class MatchingSystem {
 
-	private Function function;
+	private final Function function;
 
 	public MatchingSystem() {
 		this.function = new Function();
@@ -29,15 +29,15 @@ public class MatchingSystem {
 		function.initialize();
 	}
 
-	public void handleFunction(String functionNumber, String[] information) {
-		//TODO: 정보를 과정, 미션, 레벨로 쪼개기
-
+	public boolean handleFunction(String functionNumber, String[] information) {
 		if (functionNumber.equals(Constant.OPTION_ONE)) {
-			function.matching(information);
+			return function.matching(information);
 		}
 
 		if (functionNumber.equals(Constant.OPTION_TWO)) {
-			function.check(information);
+			return function.check(information);
 		}
+
+		return false;
 	}
 }

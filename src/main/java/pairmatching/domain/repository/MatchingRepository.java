@@ -26,10 +26,12 @@ public class MatchingRepository {
 		matchingList.clear();
 	}
 
-	public boolean checkInList() {
+	public boolean isContain(Matching matching) {
+		if(matchingList.contains(matching)) {
+			return true;
+		}
 
-
-		return true;
+		return false;
 	}
 
 }

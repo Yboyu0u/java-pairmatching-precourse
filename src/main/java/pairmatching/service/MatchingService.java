@@ -18,9 +18,9 @@ public class MatchingService {
 		return matchingSystem.handleFunctionNumber(input);
 	}
 
-	public void selectMatchingInformation(String functionNumber, String input) {
+	public boolean selectMatchingInformation(String functionNumber, String input) {
 		String[] information = input.replaceAll(BLANK, NULL).split(INFORMATION_DIVISOR);
 		// TODO: validation 처리
-		matchingSystem.handleFunction(functionNumber, information);
+		return matchingSystem.handleFunction(functionNumber, information);
 	}
 }
