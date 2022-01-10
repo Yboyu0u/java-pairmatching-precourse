@@ -16,14 +16,14 @@ public class MatchingService {
 	}
 
 	public String selectFunction(String input) {
-		SelectFunctionException.isValidFunctionNumber(input);
+		SelectFunctionException.isValid(input);
 
 		return matchingSystem.handleFunctionNumber(input);
 	}
 
 	public boolean selectMatchingInformation(String functionNumber, String input) {
 		String[] information = input.replaceAll(BLANK, NULL).split(INFORMATION_DIVISOR);
-		SelectMatchingInformationException.isValidMatchingInformation(information);
+		SelectMatchingInformationException.isValid(information);
 
 		return matchingSystem.handleFunction(functionNumber, information);
 	}

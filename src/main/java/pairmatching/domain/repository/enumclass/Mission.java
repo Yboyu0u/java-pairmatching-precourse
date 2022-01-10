@@ -1,6 +1,9 @@
 package pairmatching.domain.repository.enumclass;
 
 import java.util.Arrays;
+import java.util.Optional;
+
+import pairmatching.exception.SelectMatchingInformationException;
 
 public enum Mission {
 	CAR_RACE("자동차경주"),
@@ -19,9 +22,13 @@ public enum Mission {
 	}
 
 	public static Mission nameToMission(String missionName) {
-		return Arrays.stream(Mission.values())
+		Optional<Mission> findMission = Arrays.stream(Mission.values())
 			.filter(mission -> mission.name.equals(missionName))
-			.findFirst().get();
+			.findFirst();
+
+		SelectMatchingInformationException.isValidMission(findMission);
+
+		return findMission.get();
 	}
 
 	public String getName() {
