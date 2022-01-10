@@ -21,6 +21,7 @@ public class MatchingController {
 			check = checkFunctionNumber(matchingService.selectFunction(Console.readLine()));
 		} catch (IllegalArgumentException e) {
 			ResponseError.of(e.getMessage());
+			selectFunction();
 		}
 
 		return check;
@@ -49,6 +50,7 @@ public class MatchingController {
 			}
 		} catch (IllegalArgumentException e) {
 			ResponseError.of(e.getMessage());
+			selectMatchingInformation(functionNumber);
 		}
 	}
 }

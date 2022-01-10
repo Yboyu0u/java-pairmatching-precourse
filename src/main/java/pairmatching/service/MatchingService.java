@@ -1,6 +1,7 @@
 package pairmatching.service;
 
 import pairmatching.domain.MatchingSystem;
+import pairmatching.exception.GlobalException;
 
 public class MatchingService {
 	private static final String BLANK = " ";
@@ -14,7 +15,8 @@ public class MatchingService {
 	}
 
 	public String selectFunction(String input) {
-		// TODO: validation 처리
+		GlobalException.isValidFunctionNumber(input);
+
 		return matchingSystem.handleFunctionNumber(input);
 	}
 
