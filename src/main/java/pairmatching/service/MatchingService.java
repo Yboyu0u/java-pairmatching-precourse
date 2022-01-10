@@ -1,7 +1,8 @@
 package pairmatching.service;
 
 import pairmatching.domain.MatchingSystem;
-import pairmatching.exception.GlobalException;
+import pairmatching.exception.SelectFunctionException;
+import pairmatching.exception.SelectMatchingInformationException;
 
 public class MatchingService {
 	private static final String BLANK = " ";
@@ -15,14 +16,15 @@ public class MatchingService {
 	}
 
 	public String selectFunction(String input) {
-		GlobalException.isValidFunctionNumber(input);
+		SelectFunctionException.isValidFunctionNumber(input);
 
 		return matchingSystem.handleFunctionNumber(input);
 	}
 
 	public boolean selectMatchingInformation(String functionNumber, String input) {
 		String[] information = input.replaceAll(BLANK, NULL).split(INFORMATION_DIVISOR);
-		// TODO: validation 처리
+		SelectMatchingInformationException.isValidMatchingInformation(information);
+
 		return matchingSystem.handleFunction(functionNumber, information);
 	}
 }
