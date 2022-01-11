@@ -2,6 +2,7 @@ package pairmatching.exception;
 
 import java.util.Optional;
 
+import pairmatching.domain.repository.Matching;
 import pairmatching.domain.repository.enumclass.Course;
 import pairmatching.domain.repository.enumclass.Level;
 import pairmatching.domain.repository.enumclass.Mission;

@@ -2,6 +2,10 @@ package pairmatching.domain.repository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+
+import pairmatching.exception.MatchingRepositoryException;
+import pairmatching.exception.SelectMatchingInformationException;
 
 public class MatchingRepository {
 	private List<Matching> matchingList;
@@ -17,9 +21,13 @@ public class MatchingRepository {
 	}
 
 	public List<String> read(Matching beFindMatching) {
-		return matchingList.stream()
+		Optional<Matching> findMatching = matchingList.stream()
 			.filter(matching -> matching.equals(beFindMatching))
-			.findFirst().get().getCrewNames();
+			.findFirst();
+
+		MatchingRepositoryException.isValidRead(findMatching);
+
+		return findMatching.get().getCrewNames();
 	}
 
 	public void deleteAll() {

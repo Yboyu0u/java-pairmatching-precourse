@@ -57,11 +57,12 @@ public class Function {
 	}
 
 	public boolean check(String[] information) {
-		// TODO: 매칭 기록이 없는 정보일 때 error 처리
-		OutputView.printMatchingResult(matchingRepository.read(new Matching(Course.nameToCourse(information[Constant.COURSE_INDEX]),
+		Matching matching = new Matching(Course.nameToCourse(information[Constant.COURSE_INDEX]),
 			Level.nameToLevel(information[Constant.LEVEL_INDEX]),
 			Mission.nameToMission(information[Constant.MISSION_INDEX]),
-			null)));
+			null);
+
+		OutputView.printMatchingResult(matchingRepository.read(matching));
 
 		return false;
 	}
