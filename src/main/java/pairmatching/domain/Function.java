@@ -23,18 +23,14 @@ public class Function {
 	}
 
 	public boolean matching(String[] information) {
-		List<String> matchingResult = Randoms.shuffle(FileUtil.read(information[Constant.COURSE_INDEX]));
-
-		Matching matching = new Matching(Course.nameToCourse(information[Constant.COURSE_INDEX]),
-			Level.nameToLevel(information[Constant.LEVEL_INDEX]),
-			Mission.nameToMission(information[Constant.MISSION_INDEX]),
-			matchingResult);
+		// TODO: 이전의 매칭들 비교해서 같은 크루로 만난 적이 있는 크루 있을 시 재매칭
+		List<String> shuffledCrews = Randoms.shuffle(FileUtil.read(information[Constant.COURSE_INDEX]));
+		Matching matching = makeMatching(information, shuffledCrews);
 
 		boolean check = isRematching(matching);
-
 		if(!check) {
 			matchingRepository.save(matching);
-			OutputView.printMatchingResult(matchingResult);
+			OutputView.printMatchingResult(shuffledCrews);
 		}
 
 		return check;
@@ -57,10 +53,7 @@ public class Function {
 	}
 
 	public boolean check(String[] information) {
-		Matching matching = new Matching(Course.nameToCourse(information[Constant.COURSE_INDEX]),
-			Level.nameToLevel(information[Constant.LEVEL_INDEX]),
-			Mission.nameToMission(information[Constant.MISSION_INDEX]),
-			null);
+		Matching matching = makeMatching(information, null);
 
 		OutputView.printMatchingResult(matchingRepository.read(matching));
 
@@ -70,6 +63,13 @@ public class Function {
 	public void initialize() {
 		matchingRepository.deleteAll();
 		OutputView.printInitialized();
+	}
+
+	private Matching makeMatching(String[] information, List<String> crews) {
+		return new Matching(Course.nameToCourse(information[Constant.COURSE_INDEX]),
+			Level.nameToLevel(information[Constant.LEVEL_INDEX]),
+			Mission.nameToMission(information[Constant.MISSION_INDEX]),
+			crews);
 	}
 
 	public boolean checkMatchingRecord() {
