@@ -10,6 +10,7 @@ import pairmatching.domain.repository.MatchingRepository;
 import pairmatching.domain.repository.enumclass.Course;
 import pairmatching.domain.repository.enumclass.Level;
 import pairmatching.domain.repository.enumclass.Mission;
+import pairmatching.exception.SelectRematchingException;
 import pairmatching.utils.FileUtil;
 import pairmatching.view.InputView;
 import pairmatching.view.OutputView;
@@ -49,7 +50,8 @@ public class Function {
 	}
 
 	private boolean selectRematching(String input) {
-		// TODO: validation 처리
+		SelectRematchingException.isValid(input);
+
 		OutputView.printLineAlignment();
 		return input.equals(Constant.REMATCHING_NO);
 	}
