@@ -1,6 +1,7 @@
 package pairmatching.domain;
 
 import pairmatching.constant.Constant;
+import pairmatching.exception.SelectFunctionException;
 import pairmatching.view.OutputView;
 
 public class MatchingSystem {
@@ -14,19 +15,27 @@ public class MatchingSystem {
 	public String handleFunctionNumber(String functionNumber) {
 		if (functionNumber.equals(Constant.OPTION_ONE) || functionNumber.equals(Constant.OPTION_TWO)
 			|| functionNumber.equals(Constant.OPTION_THREE)) {
-			checkNumberIsThree(functionNumber);
+
+			checkNumber(functionNumber);
 		}
 
 		return functionNumber;
 	}
 
-	private void checkNumberIsThree(String input) {
-		if(!input.equals(Constant.OPTION_THREE)) {
+	private void checkNumber(String functionNumber) {
+		if(!functionNumber.equals(Constant.OPTION_THREE)) {
+			handleFunctionTwo(functionNumber);
 			OutputView.printMatchingInformation();
 			return;
 		}
 
 		function.initialize();
+	}
+
+	private void handleFunctionTwo(String functionNumber) {
+		if(functionNumber.equals(Constant.OPTION_TWO)) {
+			SelectFunctionException.isPossibleRead(function.checkMatchingRecord());
+		}
 	}
 
 	public boolean handleFunction(String functionNumber, String[] information) {

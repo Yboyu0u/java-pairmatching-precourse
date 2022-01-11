@@ -71,4 +71,8 @@ public class Function {
 		matchingRepository.deleteAll();
 		OutputView.printInitialized();
 	}
+
+	public boolean checkMatchingRecord() {
+		return matchingRepository.isEmpty();
+	}
 }

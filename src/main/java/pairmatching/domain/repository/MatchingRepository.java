@@ -5,10 +5,9 @@ import java.util.List;
 import java.util.Optional;
 
 import pairmatching.exception.MatchingRepositoryException;
-import pairmatching.exception.SelectMatchingInformationException;
 
 public class MatchingRepository {
-	private List<Matching> matchingList;
+	private final List<Matching> matchingList;
 
 	public MatchingRepository() {
 		this.matchingList = new ArrayList<>();
@@ -35,11 +34,14 @@ public class MatchingRepository {
 	}
 
 	public boolean isContain(Matching matching) {
-		if(matchingList.contains(matching)) {
+		if (matchingList.contains(matching)) {
 			return true;
 		}
 
 		return false;
 	}
 
+	public boolean isEmpty() {
+		return matchingList.isEmpty();
+	}
 }
