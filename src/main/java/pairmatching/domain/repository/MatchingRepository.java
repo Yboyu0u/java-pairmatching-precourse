@@ -14,12 +14,10 @@ public class MatchingRepository {
 	}
 
 	public boolean save(Matching matching) {
-		for(Matching existedMatching : matchingList) {
-			if(existedMatching.isContainPair(matching)) {
-				return false;
-			}
+		if (matchingList.stream()
+			.filter(existedMatching -> existedMatching.isContainPair(matching)).count() > 0) {
+			return false;
 		}
-
 		matchingList.add(matching);
 		return true;
 	}
