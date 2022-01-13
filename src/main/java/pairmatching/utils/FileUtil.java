@@ -9,15 +9,15 @@ import java.util.List;
 public class FileUtil {
 	private static String BASE_PATH = "src/main/resources/";
 
-	public static List<String> read(String fileName){
+	public static List<String> read(String fileName) {
 		List<String> crewNames = new ArrayList<>();
 		try {
 			BufferedReader bufferedReader = new BufferedReader(
-				new FileReader(BASE_PATH+makeFileName(fileName)));
+				new FileReader(BASE_PATH + makeFileName(fileName)));
 
-			while(true) {
+			while (true) {
 				String line = bufferedReader.readLine();
-				if(line == null){
+				if (line == null) {
 					break;
 				}
 				crewNames.add(line);
@@ -29,7 +29,7 @@ public class FileUtil {
 	}
 
 	private static String makeFileName(String course) {
-		if(course.equals("백엔드")) {
+		if (course.equals("백엔드")) {
 			return "backend-crew.md";
 		}
 

@@ -16,7 +16,7 @@ public enum Course {
 	}
 
 	public static Course nameToCourse(String courseName) {
-		Optional<Course> findCourse =  Arrays.stream(Course.values())
+		Optional<Course> findCourse = Arrays.stream(Course.values())
 			.filter(course -> course.name.equals(courseName))
 			.findFirst();
 

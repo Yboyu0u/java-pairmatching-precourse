@@ -29,7 +29,7 @@ public class Matching {
 		while (index < crewNames.size() - 1) {
 			Pair pair = new Pair();
 			pair.add(crewNames.get(index));
-			pair.add(crewNames.get(index+1));
+			pair.add(crewNames.get(index + 1));
 
 			if (index + 2 == crewNames.size() - 1) {
 				pair.add(crewNames.get(index + 2));

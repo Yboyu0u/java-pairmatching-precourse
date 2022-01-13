@@ -19,7 +19,7 @@ public enum Level {
 	}
 
 	public static Level nameToLevel(String levelName) {
-		Optional<Level> findLevel =  Arrays.stream(Level.values())
+		Optional<Level> findLevel = Arrays.stream(Level.values())
 			.filter(level -> level.name.equals(levelName))
 			.findFirst();
 

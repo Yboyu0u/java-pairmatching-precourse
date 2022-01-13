@@ -37,11 +37,7 @@ public class MatchingRepository {
 	}
 
 	public boolean isContain(Matching matching) {
-		if (matchingList.contains(matching)) {
-			return true;
-		}
-
-		return false;
+		return matchingList.contains(matching);
 	}
 
 	public boolean isEmpty() {

@@ -28,12 +28,12 @@ public class MatchingController {
 	}
 
 	private boolean checkFunctionNumber(String functionNumber) {
-		if(functionNumber.equals(Constant.OPTION_ONE) || functionNumber.equals(Constant.OPTION_TWO)) {
+		if (functionNumber.equals(Constant.OPTION_ONE) || functionNumber.equals(Constant.OPTION_TWO)) {
 			selectMatchingInformation(functionNumber);
 			return true;
 		}
 
-		if(functionNumber.equals(Constant.OPTION_THREE)) {
+		if (functionNumber.equals(Constant.OPTION_THREE)) {
 			return true;
 		}
 

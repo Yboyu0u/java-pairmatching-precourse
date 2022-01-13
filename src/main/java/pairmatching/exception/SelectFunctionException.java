@@ -14,7 +14,7 @@ public class SelectFunctionException {
 	}
 
 	public static void isPossibleRead(boolean isEmpty) {
-		if(isEmpty) {
+		if (isEmpty) {
 			throw new IllegalArgumentException(IMPOSSIBLE_READ_ERROR);
 		}
 	}

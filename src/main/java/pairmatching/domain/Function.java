@@ -1,17 +1,12 @@
 package pairmatching.domain;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 import pairmatching.constant.Constant;
 import pairmatching.domain.repository.Matching;
 import pairmatching.domain.repository.MatchingRepository;
-import pairmatching.domain.repository.Pair;
-import pairmatching.domain.repository.enumclass.Course;
-import pairmatching.domain.repository.enumclass.Level;
-import pairmatching.domain.repository.enumclass.Mission;
 import pairmatching.exception.SelectMatchingInformationException;
 import pairmatching.exception.SelectRematchingException;
 import pairmatching.utils.FileUtil;
@@ -26,7 +21,7 @@ public class Function {
 	}
 
 	public boolean matching(String[] information) {
-		if(!isRematching(new Matching(information, new ArrayList<>()))) {
+		if (!isRematching(new Matching(information, new ArrayList<>()))) {
 			return isTry(information);
 		}
 
@@ -34,11 +29,11 @@ public class Function {
 	}
 
 	private boolean isTry(String[] information) {
-		for(int i = 0; i< 3; i++) {
+		for (int i = 0; i < 3; i++) {
 			Matching matching = new Matching(information,
 				Randoms.shuffle(FileUtil.read(information[Constant.COURSE_INDEX])));
 
-			if(save(matching)) {
+			if (save(matching)) {
 				return true;
 			}
 		}
@@ -48,7 +43,7 @@ public class Function {
 	}
 
 	private boolean save(Matching matching) {
-		if(matchingRepository.save(matching)) {
+		if (matchingRepository.save(matching)) {
 			OutputView.printMatchingResult(matching.getPairList());
 			return true;
 		}
@@ -57,7 +52,7 @@ public class Function {
 	}
 
 	private boolean isRematching(Matching matching) {
-		if(matchingRepository.isContain(matching)) {
+		if (matchingRepository.isContain(matching)) {
 			InputView.selectRematching();
 			return selectRematching(Console.readLine());
 		}

@@ -23,7 +23,7 @@ public class MatchingSystem {
 	}
 
 	private void checkNumber(String functionNumber) {
-		if(!functionNumber.equals(Constant.OPTION_THREE)) {
+		if (!functionNumber.equals(Constant.OPTION_THREE)) {
 			two(functionNumber);
 			OutputView.printMatchingInformation();
 			return;
@@ -33,7 +33,7 @@ public class MatchingSystem {
 	}
 
 	private void two(String functionNumber) {
-		if(functionNumber.equals(Constant.OPTION_TWO)) {
+		if (functionNumber.equals(Constant.OPTION_TWO)) {
 			SelectFunctionException.isPossibleRead(function.checkMatchingRecord());
 		}
 	}
