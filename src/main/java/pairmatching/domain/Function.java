@@ -1,5 +1,6 @@
 package pairmatching.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import camp.nextstep.edu.missionutils.Console;
@@ -7,6 +8,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 import pairmatching.constant.Constant;
 import pairmatching.domain.repository.Matching;
 import pairmatching.domain.repository.MatchingRepository;
+import pairmatching.domain.repository.Pair;
 import pairmatching.domain.repository.enumclass.Course;
 import pairmatching.domain.repository.enumclass.Level;
 import pairmatching.domain.repository.enumclass.Mission;
@@ -24,13 +26,13 @@ public class Function {
 
 	public boolean matching(String[] information) {
 		// TODO: 이전의 매칭들 비교해서 같은 크루로 만난 적이 있는 크루 있을 시 재매칭
-		List<String> shuffledCrews = Randoms.shuffle(FileUtil.read(information[Constant.COURSE_INDEX]));
-		Matching matching = makeMatching(information, shuffledCrews);
+		List<String> shuffledCrewNames = Randoms.shuffle(FileUtil.read(information[Constant.COURSE_INDEX]));
+		Matching matching = makeMatching(information, shuffledCrewNames);
 
 		boolean check = isRematching(matching);
 		if(!check) {
 			matchingRepository.save(matching);
-			OutputView.printMatchingResult(shuffledCrews);
+			OutputView.printMatchingResult(matching.getPairList());
 		}
 
 		return check;
@@ -53,7 +55,7 @@ public class Function {
 	}
 
 	public boolean check(String[] information) {
-		Matching matching = makeMatching(information, null);
+		Matching matching = makeMatching(information, new ArrayList<>());
 
 		OutputView.printMatchingResult(matchingRepository.read(matching));
 
@@ -65,11 +67,31 @@ public class Function {
 		OutputView.printInitialized();
 	}
 
-	private Matching makeMatching(String[] information, List<String> crews) {
+	private Matching makeMatching(String[] information, List<String> crewNames) {
 		return new Matching(Course.nameToCourse(information[Constant.COURSE_INDEX]),
 			Level.nameToLevel(information[Constant.LEVEL_INDEX]),
 			Mission.nameToMission(information[Constant.MISSION_INDEX]),
-			crews);
+			makePairList(crewNames));
+	}
+
+	private List<Pair> makePairList(List<String> crewNames) {
+		List<Pair> pairList = new ArrayList<>();
+
+		int index = 0;
+		while (index < crewNames.size() - 1) {
+			Pair pair = new Pair();
+			pair.add(crewNames.get(index));
+			pair.add(crewNames.get(index+1));
+
+			if (index + 2 == crewNames.size() - 1) {
+				pair.add(crewNames.get(index + 2));
+			}
+
+			pairList.add(pair);
+			index += 2;
+		}
+
+		return pairList;
 	}
 
 	public boolean checkMatchingRecord() {

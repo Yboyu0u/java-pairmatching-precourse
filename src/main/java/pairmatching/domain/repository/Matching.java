@@ -11,13 +11,13 @@ public class Matching {
 	private Course course;
 	private Level level;
 	private Mission mission;
-	private List<String> crewNames;
+	private List<Pair> pairList; //TODO: List<Pair> 로 변경
 
-	public Matching(Course course, Level level, Mission mission, List<String> crewNames) {
+	public Matching(Course course, Level level, Mission mission, List<Pair> crewNames) {
 		this.course = course;
 		this.level = level;
 		this.mission = mission;
-		this.crewNames = crewNames;
+		this.pairList = crewNames;
 	}
 
 	@Override
@@ -35,7 +35,7 @@ public class Matching {
 		return Objects.hash(course, level, mission);
 	}
 
-	public List<String> getCrewNames() {
-		return crewNames;
+	public List<Pair> getPairList() {
+		return pairList;
 	}
 }
