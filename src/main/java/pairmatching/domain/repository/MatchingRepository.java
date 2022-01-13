@@ -14,8 +14,13 @@ public class MatchingRepository {
 	}
 
 	public boolean save(Matching matching) {
-		matchingList.add(matching);
+		for(Matching existedMatching : matchingList) {
+			if(existedMatching.isContainPair(matching)) {
+				return false;
+			}
+		}
 
+		matchingList.add(matching);
 		return true;
 	}
 

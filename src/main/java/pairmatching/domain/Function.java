@@ -25,17 +25,20 @@ public class Function {
 	}
 
 	public boolean matching(String[] information) {
-		// TODO: 이전의 매칭들 비교해서 같은 크루로 만난 적이 있는 크루 있을 시 재매칭
-		List<String> shuffledCrewNames = Randoms.shuffle(FileUtil.read(information[Constant.COURSE_INDEX]));
-		Matching matching = makeMatching(information, shuffledCrewNames);
+		Matching matching = new Matching(information,
+			Randoms.shuffle(FileUtil.read(information[Constant.COURSE_INDEX])));
 
 		boolean check = isRematching(matching);
-		if(!check) {
-			matchingRepository.save(matching);
-			OutputView.printMatchingResult(matching.getPairList());
+		if (!check) {
+			save(matching);
 		}
 
 		return check;
+	}
+
+	private void save(Matching matching) {
+		matchingRepository.save(matching);
+		OutputView.printMatchingResult(matching.getPairList());
 	}
 
 	private boolean isRematching(Matching matching) {
@@ -55,43 +58,15 @@ public class Function {
 	}
 
 	public boolean check(String[] information) {
-		Matching matching = makeMatching(information, new ArrayList<>());
+		Matching matching = new Matching(information, new ArrayList<>());
 
 		OutputView.printMatchingResult(matchingRepository.read(matching));
-
 		return false;
 	}
 
 	public void initialize() {
 		matchingRepository.deleteAll();
 		OutputView.printInitialized();
-	}
-
-	private Matching makeMatching(String[] information, List<String> crewNames) {
-		return new Matching(Course.nameToCourse(information[Constant.COURSE_INDEX]),
-			Level.nameToLevel(information[Constant.LEVEL_INDEX]),
-			Mission.nameToMission(information[Constant.MISSION_INDEX]),
-			makePairList(crewNames));
-	}
-
-	private List<Pair> makePairList(List<String> crewNames) {
-		List<Pair> pairList = new ArrayList<>();
-
-		int index = 0;
-		while (index < crewNames.size() - 1) {
-			Pair pair = new Pair();
-			pair.add(crewNames.get(index));
-			pair.add(crewNames.get(index+1));
-
-			if (index + 2 == crewNames.size() - 1) {
-				pair.add(crewNames.get(index + 2));
-			}
-
-			pairList.add(pair);
-			index += 2;
-		}
-
-		return pairList;
 	}
 
 	public boolean checkMatchingRecord() {

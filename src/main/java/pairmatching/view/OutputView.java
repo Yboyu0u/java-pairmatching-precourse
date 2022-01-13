@@ -16,22 +16,9 @@ public class OutputView {
 	public static void printMatchingResult(List<Pair> pairList) {
 		System.out.println();
 		System.out.println(Message.PRINT_MATCHING_RESULT);
-		pairList.stream().forEach(pair -> System.out.println(String.join(MATCHING_DIVISOR,pair.getCrewNames())));
-		/*formatCrewNames(pairList);*/
+		pairList.forEach(pair ->
+			System.out.println(String.join(MATCHING_DIVISOR, pair.getCrewNames())));
 		System.out.println();
-	}
-
-	private static void formatCrewNames(List<Pair> pairList) {
-		int index = 0;
-		while (index < pairList.size() - 1) {
-			System.out.print(pairList.get(index) + MATCHING_DIVISOR + pairList.get(index + 1));
-
-			if (index + 2 == pairList.size() - 1) {
-				System.out.print(MATCHING_DIVISOR + pairList.get(index + 2));
-			}
-			System.out.println();
-			index += 2;
-		}
 	}
 
 	public static void printInitialized() {

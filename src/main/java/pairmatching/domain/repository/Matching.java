@@ -1,8 +1,10 @@
 package pairmatching.domain.repository;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import pairmatching.constant.Constant;
 import pairmatching.domain.repository.enumclass.Course;
 import pairmatching.domain.repository.enumclass.Level;
 import pairmatching.domain.repository.enumclass.Mission;
@@ -11,13 +13,38 @@ public class Matching {
 	private Course course;
 	private Level level;
 	private Mission mission;
-	private List<Pair> pairList; //TODO: List<Pair> 로 변경
+	private List<Pair> pairList;
 
-	public Matching(Course course, Level level, Mission mission, List<Pair> crewNames) {
-		this.course = course;
-		this.level = level;
-		this.mission = mission;
-		this.pairList = crewNames;
+	public Matching(String[] information, List<String> crewNames) {
+		this.course = Course.nameToCourse(information[Constant.COURSE_INDEX]);
+		this.level = Level.nameToLevel(information[Constant.LEVEL_INDEX]);
+		this.mission = Mission.nameToMission(information[Constant.MISSION_INDEX]);
+		this.pairList = makePairList(crewNames);
+	}
+
+	private List<Pair> makePairList(List<String> crewNames) {
+		List<Pair> pairList = new ArrayList<>();
+
+		int index = 0;
+		while (index < crewNames.size() - 1) {
+			Pair pair = new Pair();
+			pair.add(crewNames.get(index));
+			pair.add(crewNames.get(index+1));
+
+			if (index + 2 == crewNames.size() - 1) {
+				pair.add(crewNames.get(index + 2));
+			}
+
+			pairList.add(pair);
+			index += 2;
+		}
+
+		return pairList;
+	}
+
+	public boolean isContainPair(Matching matching) {
+		return this.mission == matching.mission
+			&& this.pairList.stream().filter(pair -> matching.pairList.contains(pair)).count() > 0;
 	}
 
 	@Override
