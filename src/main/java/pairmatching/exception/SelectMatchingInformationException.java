@@ -42,6 +42,6 @@ public class SelectMatchingInformationException {
 	}
 
 	public static void isCanNotMatching() {
-		throw new IllegalArgumentException(MISSION_ERROR);
+		throw new IllegalArgumentException(MATCHING_ERROR);
 	}
 }
