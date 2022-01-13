@@ -12,6 +12,7 @@ import pairmatching.domain.repository.Pair;
 import pairmatching.domain.repository.enumclass.Course;
 import pairmatching.domain.repository.enumclass.Level;
 import pairmatching.domain.repository.enumclass.Mission;
+import pairmatching.exception.SelectMatchingInformationException;
 import pairmatching.exception.SelectRematchingException;
 import pairmatching.utils.FileUtil;
 import pairmatching.view.InputView;
@@ -25,20 +26,34 @@ public class Function {
 	}
 
 	public boolean matching(String[] information) {
-		Matching matching = new Matching(information,
-			Randoms.shuffle(FileUtil.read(information[Constant.COURSE_INDEX])));
-
-		boolean check = isRematching(matching);
-		if (!check) {
-			save(matching);
+		if(!isRematching(new Matching(information, new ArrayList<>()))) {
+			return isTry(information);
 		}
 
-		return check;
+		return false;
 	}
 
-	private void save(Matching matching) {
-		matchingRepository.save(matching);
-		OutputView.printMatchingResult(matching.getPairList());
+	private boolean isTry(String[] information) {
+		for(int i = 0; i< 3; i++) {
+			Matching matching = new Matching(information,
+				Randoms.shuffle(FileUtil.read(information[Constant.COURSE_INDEX])));
+
+			if(save(matching)) {
+				return true;
+			}
+		}
+
+		SelectMatchingInformationException.isCanNotMatching();
+		return false;
+	}
+
+	private boolean save(Matching matching) {
+		if(matchingRepository.save(matching)) {
+			OutputView.printMatchingResult(matching.getPairList());
+			return true;
+		}
+
+		return false;
 	}
 
 	private boolean isRematching(Matching matching) {
@@ -61,7 +76,7 @@ public class Function {
 		Matching matching = new Matching(information, new ArrayList<>());
 
 		OutputView.printMatchingResult(matchingRepository.read(matching));
-		return false;
+		return true;
 	}
 
 	public void initialize() {

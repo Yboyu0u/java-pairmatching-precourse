@@ -40,11 +40,11 @@ public class MatchingSystem {
 
 	public boolean handleFunction(String functionNumber, String[] information) {
 		if (functionNumber.equals(Constant.OPTION_ONE)) {
-			return function.matching(information);
+			return !function.matching(information);
 		}
 
 		if (functionNumber.equals(Constant.OPTION_TWO)) {
-			return function.check(information);
+			return !function.check(information);
 		}
 
 		return false;

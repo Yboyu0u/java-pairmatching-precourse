@@ -2,7 +2,6 @@ package pairmatching.exception;
 
 import java.util.Optional;
 
-import pairmatching.domain.repository.Matching;
 import pairmatching.domain.repository.enumclass.Course;
 import pairmatching.domain.repository.enumclass.Level;
 import pairmatching.domain.repository.enumclass.Mission;
@@ -12,6 +11,7 @@ public class SelectMatchingInformationException {
 	private static final String COURSE_ERROR = "올바른 과정 정보를 입력해야 합니다.";
 	private static final String LEVEL_ERROR = "올바른 레벨 정보를 입력해야 합니다.";
 	private static final String MISSION_ERROR = "올바른 미션 정보를 입력해야 합니다.";
+	private static final String MATCHING_ERROR = "매칭 시도가 3회를 초과했습니다.";
 
 	public static void isValid(String[] information) {
 		length(information.length);
@@ -39,5 +39,9 @@ public class SelectMatchingInformationException {
 		if (!mission.isPresent()) {
 			throw new IllegalArgumentException(MISSION_ERROR);
 		}
+	}
+
+	public static void isCanNotMatching() {
+		throw new IllegalArgumentException(MISSION_ERROR);
 	}
 }
