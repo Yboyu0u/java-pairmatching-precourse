@@ -7,6 +7,8 @@ import pairmatching.domain.repository.enumclass.Level;
 import pairmatching.domain.repository.enumclass.Mission;
 
 public class SelectMatchingInformationException {
+	private static final int LENGTH = 3;
+
 	private static final String LENGTH_ERROR = "과정, 레벨, 미션 정보를 예시에 맞게 입력해야 합니다.";
 	private static final String COURSE_ERROR = "올바른 과정 정보를 입력해야 합니다.";
 	private static final String LEVEL_ERROR = "올바른 레벨 정보를 입력해야 합니다.";
@@ -18,7 +20,7 @@ public class SelectMatchingInformationException {
 	}
 
 	private static void length(int length) {
-		if (!(length == 3)) {
+		if (!(length == LENGTH)) {
 			throw new IllegalArgumentException(LENGTH_ERROR);
 		}
 	}

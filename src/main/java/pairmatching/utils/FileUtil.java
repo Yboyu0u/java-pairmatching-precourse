@@ -7,7 +7,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FileUtil {
-	private static String BASE_PATH = "src/main/resources/";
+	private static final String BASE_PATH = "src/main/resources/";
+
+	private static final String COURSE_BACKEND = "백엔드";
+	private static final String FILE_NAME_BACKEND = "backend-crew.md";
+	private static final String FILE_NAME_FRONTEND = "frontend-crew.md";
 
 	public static List<String> read(String fileName) {
 		List<String> crewNames = new ArrayList<>();
@@ -29,10 +33,10 @@ public class FileUtil {
 	}
 
 	private static String makeFileName(String course) {
-		if (course.equals("백엔드")) {
-			return "backend-crew.md";
+		if (course.equals(COURSE_BACKEND)) {
+			return FILE_NAME_BACKEND;
 		}
 
-		return "frontend-crew.md";
+		return FILE_NAME_FRONTEND;
 	}
 }

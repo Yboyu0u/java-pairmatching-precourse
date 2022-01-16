@@ -14,6 +14,8 @@ import pairmatching.view.InputView;
 import pairmatching.view.OutputView;
 
 public class Function {
+	private static final int MATCHING_TRY_COUNT = 3;
+
 	private final MatchingRepository matchingRepository;
 
 	public Function() {
@@ -29,7 +31,7 @@ public class Function {
 	}
 
 	private boolean isTry(String[] information) {
-		for (int i = 0; i < 3; i++) {
+		for (int i = 0; i < MATCHING_TRY_COUNT; i++) {
 			Matching matching = new Matching(information,
 				Randoms.shuffle(FileUtil.read(information[Constant.COURSE_INDEX])));
 

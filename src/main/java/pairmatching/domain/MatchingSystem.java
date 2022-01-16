@@ -15,7 +15,6 @@ public class MatchingSystem {
 	public String handleFunctionNumber(String functionNumber) {
 		if (functionNumber.equals(Constant.OPTION_ONE) || functionNumber.equals(Constant.OPTION_TWO)
 			|| functionNumber.equals(Constant.OPTION_THREE)) {
-
 			checkNumber(functionNumber);
 		}
 
