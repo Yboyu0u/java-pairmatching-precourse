@@ -31,7 +31,7 @@ public class Matching {
 			pair.add(crewNames.get(index));
 			pair.add(crewNames.get(index + 1));
 
-			checkOdd(index, pair, crewNames);
+			pair = checkOdd(index, pair, crewNames);
 
 			pairList.add(pair);
 			index += 2;
@@ -50,7 +50,7 @@ public class Matching {
 
 	public boolean isContainPair(Matching matching) {
 		return this.mission == matching.mission
-			&& this.pairList.stream().filter(pair -> matching.pairList.contains(pair)).count() > 0;
+			&& this.pairList.stream().anyMatch(pair -> matching.pairList.contains(pair));
 	}
 
 	@Override

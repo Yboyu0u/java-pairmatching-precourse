@@ -15,7 +15,7 @@ public class MatchingRepository {
 
 	public boolean save(Matching matching) {
 		if (matchingList.stream()
-			.filter(existedMatching -> existedMatching.isContainPair(matching)).count() > 0) {
+			.anyMatch(existedMatching -> existedMatching.isContainPair(matching))) {
 			return false;
 		}
 		matchingList.add(matching);
