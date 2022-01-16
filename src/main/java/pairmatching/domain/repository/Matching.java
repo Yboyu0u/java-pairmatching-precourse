@@ -31,15 +31,21 @@ public class Matching {
 			pair.add(crewNames.get(index));
 			pair.add(crewNames.get(index + 1));
 
-			if (index + 2 == crewNames.size() - 1) {
-				pair.add(crewNames.get(index + 2));
-			}
+			checkOdd(index, pair, crewNames);
 
 			pairList.add(pair);
 			index += 2;
 		}
 
 		return pairList;
+	}
+
+	private Pair checkOdd(int index, Pair pair, List<String> crewNames) {
+		if (index + 2 == crewNames.size() - 1) {
+			pair.add(crewNames.get(index + 2));
+		}
+
+		return pair;
 	}
 
 	public boolean isContainPair(Matching matching) {
