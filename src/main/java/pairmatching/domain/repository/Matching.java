@@ -8,14 +8,19 @@ import pairmatching.constant.Constant;
 import pairmatching.domain.repository.enumclass.Course;
 import pairmatching.domain.repository.enumclass.Level;
 import pairmatching.domain.repository.enumclass.Mission;
+import pairmatching.exception.MatchingChecker;
 
 public class Matching {
-	private Course course;
-	private Level level;
-	private Mission mission;
-	private List<Pair> pairList;
+	private final Course course;
+	private final Level level;
+	private final Mission mission;
+	private final List<Pair> pairList;
 
 	public Matching(String[] information, List<String> crewNames) {
+		MatchingChecker.isValidLevelAndMission(
+			Level.nameToLevel(information[Constant.LEVEL_INDEX]),
+				Mission.nameToMission(information[Constant.MISSION_INDEX]));
+
 		this.course = Course.nameToCourse(information[Constant.COURSE_INDEX]);
 		this.level = Level.nameToLevel(information[Constant.LEVEL_INDEX]);
 		this.mission = Mission.nameToMission(information[Constant.MISSION_INDEX]);
@@ -50,7 +55,7 @@ public class Matching {
 
 	public boolean isContainPair(Matching matching) {
 		return this.mission == matching.mission
-			&& this.pairList.stream().anyMatch(pair -> matching.pairList.contains(pair));
+			&& this.pairList.stream().anyMatch(matching.pairList::contains);
 	}
 
 	@Override

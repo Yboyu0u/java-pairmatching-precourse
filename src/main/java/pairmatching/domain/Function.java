@@ -40,7 +40,7 @@ public class Function {
 			}
 		}
 
-		SelectMatchingInformationException.isCanNotMatching();
+		SelectMatchingInformationException.isOverTry();
 		return false;
 	}
 

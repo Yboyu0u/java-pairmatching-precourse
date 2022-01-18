@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import pairmatching.exception.MatchingChecker;
 import pairmatching.exception.MatchingRepositoryException;
 
 public class MatchingRepository {
@@ -11,6 +12,7 @@ public class MatchingRepository {
 
 	public MatchingRepository() {
 		this.matchingList = new ArrayList<>();
+		MatchingChecker.initMap();
 	}
 
 	public boolean save(Matching matching) {

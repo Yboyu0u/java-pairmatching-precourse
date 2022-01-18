@@ -13,7 +13,8 @@ public class SelectMatchingInformationException {
 	private static final String COURSE_ERROR = "올바른 과정 정보를 입력해야 합니다.";
 	private static final String LEVEL_ERROR = "올바른 레벨 정보를 입력해야 합니다.";
 	private static final String MISSION_ERROR = "올바른 미션 정보를 입력해야 합니다.";
-	private static final String MATCHING_ERROR = "매칭 시도가 3회를 초과했습니다.";
+	private static final String MATCHING_TRY_ERROR = "매칭 시도가 3회를 초과했습니다.";
+	private static final String LEVEL_MISSION_ERROR = "해당 레벨에 해당 미션이 없습니다.";
 
 	public static void isValid(String[] information) {
 		length(information.length);
@@ -43,7 +44,12 @@ public class SelectMatchingInformationException {
 		}
 	}
 
-	public static void isCanNotMatching() {
-		throw new IllegalArgumentException(MATCHING_ERROR);
+	public static void isOverTry() {
+		throw new IllegalArgumentException(MATCHING_TRY_ERROR);
 	}
+
+	public static void isValidLevelAndMission() {
+		throw new IllegalArgumentException(LEVEL_MISSION_ERROR);
+	}
+
 }
